@@ -54,3 +54,12 @@ CREATE TABLE favorite (
     PRIMARY KEY (id_pengguna, id_buku),
     FOREIGN KEY (id_pengguna) REFERENCES pengguna (id_pengguna) ON DELETE CASCADE,
     FOREIGN KEY (id_buku) REFERENCES buku (id_buku) ON DELETE CASCADE);
+
+CREATE TABLE notifikasi(
+    id_notifikasi INT AUTO_INCREMENT PRIMARY KEY,
+    jenis ENUM('jatuh_tempo','buku_baru','peminjaman') NOT NULL,
+    pesan VARCHAR(255) NOT NULL,
+    sudah_dibaca BOOLEAN NOT NULL DEFAULT FALSE,
+    dibuat_pada DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_pengguna INT NOT NULL,
+    FOREIGN KEY (id_pengguna) REFERENCES pengguna (id_pengguna) ON DELETE CASCADE);
