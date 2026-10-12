@@ -44,6 +44,13 @@ CREATE TABLE peminjaman (
     id_pengguna INT NOT NULL,
     id_buku INT NOT NULL,
     FOREIGN KEY (id_pengguna) REFERENCES pengguna (id_pengguna) ON DELETE CASCADE,
-    FOREIGN KEY (id_buku) REFERENCES buku(id_buku),
+    FOREIGN KEY (id_buku) REFERENCES buku (id_buku),
     INDEX idx_status (status));
     
+CREATE TABLE favorite (
+    id_pengguna INT NOT NULL,
+    id_buku INT NOT NULL,
+    dibuat_pada DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id_pengguna, id_buku),
+    FOREIGN KEY (id_pengguna) REFERENCES pengguna (id_pengguna) ON DELETE CASCADE,
+    FOREIGN KEY (id_buku) REFERENCES buku (id_buku) ON DELETE CASCADE);
