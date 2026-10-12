@@ -13,7 +13,11 @@ CREATE TABLE pengguna (
     status ENUM('aktif','nonaktif') NOT NULL DEFAULT 'aktif',
     dibuat_pada DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);
 
-CREATE TABLE buku(
+CREATE TABLE kategori (
+    id_kategori INT AUTO_INCREMENT PRIMARY KEY,
+    nama_kategori VARCHAR(75) NOT NULL UNIQUE);
+
+CREATE TABLE buku (
     id_buku INT AUTO_INCREMENT PRIMARY KEY,
     file_buku VARCHAR(255) NOT NULL UNIQUE,
     judul VARCHAR(200) NOT NULL,
