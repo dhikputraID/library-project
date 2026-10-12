@@ -33,3 +33,17 @@ CREATE TABLE buku (
     FOREIGN KEY (id_kategori) REFERENCES kategori (id_kategori),
     index idx_judul (judul),
     index idx_penulis (penulis));
+    
+CREATE TABLE peminjaman (
+    id_peminjaman INT AUTO_INCREMENT PRIMARY KEY,
+    tgl_peminjaman DATE NOT NULL DEFAULT CURRENT_DATE,
+    tgl_pengembalian DATE NULL,
+    tgl_jatuh_tempo DATE NOT NULL,
+    status ENUM('dipinjam','dikembalikan','terlambat') NOT NULL DEFAULT 'dipinjam',
+    denda INT NOT NULL DEFAULT 0,
+    id_pengguna INT NOT NULL,
+    id_buku INT NOT NULL,
+    FOREIGN KEY (id_pengguna) REFERENCES pengguna (id_pengguna) ON DELETE CASCADE,
+    FOREIGN KEY (id_buku) REFERENCES buku(id_buku),
+    INDEX idx_status (status));
+    
